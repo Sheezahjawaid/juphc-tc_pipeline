@@ -4,6 +4,16 @@ metadata:
   name: tax-calculator-pipeline
 spec:
   tasks:
-    - name: install-and-test
+    - name: npminstall
       taskRef:
-        name: jasmine-test-task
+        name: npminstall
+    - name: tests
+      taskRef:
+        name: jasmine
+      runAfter:
+        - npminstall
+    - name: build-tasks
+      taskRef:
+        name: build-docker-image
+      runAfter:
+        - tests

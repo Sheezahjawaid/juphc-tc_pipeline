@@ -5,3 +5,10 @@ metadata:
 spec:
   pipelineRef:
     name: tax-calculator-pipeline
+  params:
+    - name: image-tag
+      value: "latest"
+  workspaces:
+    - name: pipeline-workspace
+      persistentVolumeClaim:
+        claimName: tekton-pvc

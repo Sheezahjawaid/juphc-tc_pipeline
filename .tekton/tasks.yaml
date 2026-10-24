@@ -1,11 +1,21 @@
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: jasmine-test-task
+  name: npminstall
+spec:
+  steps:
+    - name: install
+      image: node:18-alpine
+      script: |
+        npm install
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: jasmine
 spec:
   steps:
     - name: run-tests
       image: node:18-alpine
       script: |
-        npm install
         npx jasmine
